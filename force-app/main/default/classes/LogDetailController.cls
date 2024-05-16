@@ -25,7 +25,7 @@ public class LogDetailController {
                     records.add(new LogDetail(logDetail));
                     recordIds.add(logDetail.Id);
                 }
-                for(ContentDocumentLink cdl : [SELECT Id, LinkedEntityId, ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId IN : recordIds ORDER BY SystemModstamp]) {
+                for(ContentDocumentLink cdl : [SELECT Id, LinkedEntityId, ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId IN : recordIds ORDER BY SystemModstamp DESC LIMIT 1]) {
                     if(!recordIdToContentDocumentId.containsKey(cdl.LinkedEntityId)) {
                         recordIdToContentDocumentId.put(cdl.LinkedEntityId, cdl.ContentDocumentId);
                     }

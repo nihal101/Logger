@@ -1,0 +1,60 @@
+<template>
+	<lightning-layout>
+		<lightning-layout-item padding="around-small" size="3">
+			<lightning-card variant="Narrow" title="Stream Configuration" icon-name="standard:data_streams">
+				<div slot="actions">
+					<lightning-button-icon icon-name="utility:back" variant="container" alternative-text="Hide"
+						slot="actions">
+					</lightning-button-icon>
+				</div>
+				<div slot="footer">
+					<div class="user-picker">
+						<label class="slds-form-element__label" style="float: inline-start;">Logged By</label>
+						<lightning-record-picker label="Select User" style="text-align: left;" object-api-name="User" variant="label-hidden"
+							placeholder="All" onchange={handleLoggedByChange}>
+						</lightning-record-picker>
+					</div>
+					<div class="origin-location">
+						<label class="slds-form-element__label" style="float: inline-start;">Origin Location</label>
+						<lightning-input variant="label-hidden" placeholder="All" onchange={handleOriginLocationChange}>
+						</lightning-input>
+					</div>
+					<div class="logging-level">
+						<label class="slds-form-element__label" style="float: inline-start;">Logging Level</label>
+						<lightning-combobox variant="label-hidden" placeholder="All" options={loggingLevel}
+							onchange={handleLoggingLevelChange} value={loggingLevelValue}></lightning-combobox>
+					</div>
+					<div class="message">
+						<label class="slds-form-element__label" style="float: inline-start;">Message Contains</label>
+						<lightning-textarea variant="label-hidden" onchange={handleMessageChange}></lightning-textarea>
+					</div>
+				</div>
+			</lightning-card>
+		</lightning-layout-item>
+		<lightning-layout-item lightning-layout-item padding="around-small" size="9">
+			<lightning-card variant="Narrow" title={streamEventTitle}>
+				<div slot="actions">
+					<lightning-button-group>
+						<template if:true={isStreamingOn}>
+							<lightning-button label="Stop" variant="destructive-text" icon-name="utility:stop"
+								onclick={handleStremStop}></lightning-button>
+						</template>
+						<template if:false={isStreamingOn}>
+							<lightning-button label="Start" variant="success" icon-name="utility:play"
+								onclick={handleStreamStart}></lightning-button>
+						</template>
+						<lightning-button label="Clear" variant="destructive" icon-name="utility:clear" onclick={handleClearEventStream}>
+						</lightning-button>
+					</lightning-button-group>
+				</div>
+				<div class="stream-body">
+					<template if:true={filteredMessages}>
+						<template for:each={filteredMessages} for:item="message">
+							<c-event-detail key={message.EventUuid} message={message}></c-event-detail>
+						</template>
+					</template>
+				</div>
+			</lightning-card>
+		</lightning-layout-item>
+	</lightning-layout>
+</template>

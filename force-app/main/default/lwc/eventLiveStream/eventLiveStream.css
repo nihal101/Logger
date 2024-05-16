@@ -1,0 +1,13 @@
+.stream-body {
+	width: 100%;
+    height: 70vh;
+    background: #302929;
+    font-weight: 500;
+    padding: 10px;
+	font-size: 12px;
+	overflow: auto;
+}
+
+.logging-level {
+	text-align: left;
+}

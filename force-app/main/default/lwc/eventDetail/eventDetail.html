@@ -1,0 +1,8 @@
+<template>
+	<p class="created-date">{message.createdDate}<span class="user-name">{message.username}</span></p>
+	<div style="padding-left: 30px; display: flex;">
+		<p class="origin">{message.origin}</p>
+		<lightning-badge label={message.loggigLevel} class="slds-badge_inverse"></lightning-badge>
+		<p class={message.className}>{message.message}</p>
+	</div>
+</template>

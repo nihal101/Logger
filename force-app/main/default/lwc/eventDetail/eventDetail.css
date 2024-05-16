@@ -1,0 +1,28 @@
+.origin {
+	color: #2963e5;
+    padding-right: 10px;
+}
+
+.created-date {
+	color: lightgrey;
+}
+
+.user-name {
+	color: #d91292;
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+.error {
+	color: red;
+	padding-left: 10px;
+	font-size: 14px;
+    font-weight: 600;
+}
+
+.success {
+	color: green;
+	padding-left: 10px;
+	font-size: 14px;
+    font-weight: 600;
+}

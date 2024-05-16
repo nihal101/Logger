@@ -1,6 +1,6 @@
 public class CalloutHelper {
     
-    public String endPointUrl;
+    public String endPointUrl;//
     public String body;
     public String method;
     public Integer statusCode;

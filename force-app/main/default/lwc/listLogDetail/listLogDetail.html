@@ -1,28 +1,31 @@
 <template>
 
-    <template if:true={showLogDetail}>
-            <div style="height: 100%;">
-                <lightning-datatable
-                        key-field="id"
-                        class="remove-border"
-                        data={records}
-                        columns={columns}
-                        hide-checkbox-column
-                        onrowaction={handleRowAction}>
-                </lightning-datatable>
-            </div>
-    </template>
+    <lightning-card>
 
-    <template if:true={message}>
-        <div class="slds-align--absolute-center slds-p-top--large">
-            <p>{message}</p>
-        </div>
-    </template>
+        <template if:true={showLogDetail}>
+                <div style="height: 100%;">
+                    <lightning-datatable
+                            key-field="id"
+                            class="remove-border"
+                            data={records}
+                            columns={columns}
+                            hide-checkbox-column
+                            onrowaction={handleRowAction}>
+                    </lightning-datatable>
+                </div>
+        </template>
+
+        <template if:true={message}>
+            <div class="slds-align--absolute-center slds-p-top--large">
+                <p>{message}</p>
+            </div>
+        </template>
 
         <template if:true={showMore}>
             <div class="slds-align--absolute-center slds-p-top--large">
                 <a onclick={getNextSegment}>show more({numberOfRecord})</a>
             </div>
         </template>
+    </lightning-card>
 
 </template>

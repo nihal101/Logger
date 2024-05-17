@@ -3,6 +3,7 @@ import getLogDetails from '@salesforce/apex/LogDetailController.getLogDetails';
 import { loadStyle } from 'lightning/platformResourceLoader';
 import FileLoggerCSS from '@salesforce/resourceUrl/FileLoggerCSS';
 import { NavigationMixin } from 'lightning/navigation';
+import NUMBER_OF_RECORDS_AT_ONCE from '@salesforce/label/c.NUMBER_OF_RECORDS_AT_ONCE';
 
 const columns = [
     {
@@ -34,7 +35,7 @@ export default class ListLogDetail extends NavigationMixin(LightningElement) {
     @api recordId;
     columns = columns;
     @track records = [];
-    numberOfRecord = 1;
+    numberOfRecord = 10;
     count = 0;
     showLogDetail = false;
     message;
@@ -42,6 +43,7 @@ export default class ListLogDetail extends NavigationMixin(LightningElement) {
     styleLoaded = false;
 
     connectedCallback() {
+        this.numberOfRecord = NUMBER_OF_RECORDS_AT_ONCE ? parseInt(NUMBER_OF_RECORDS_AT_ONCE) : 10;
         this.fetchLogDetailsRecord();
     }
 

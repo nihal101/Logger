@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>NUMBER_OF_RECORDS_AT_ONCE</fullName>
+        <categories>LogLinker</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NUMBER OF RECORDS AT ONCE</shortDescription>
+        <value>10</value>
+    </labels>
+</CustomLabels>

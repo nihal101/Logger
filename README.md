@@ -11,8 +11,13 @@ Create a simple debug/error entry
    	Logger.error('Error 1');
   	Logger.saveLog();
 
-   	![image](https://github.com/nihal101/Logger/assets/46245110/e67f062d-3726-42b0-959e-2de857a3506e)
-
+## Example 2
+Create an entry & related to the record using either record ID or reference or list collection.
+	List<Account> accs = [SELECT Id FROM Account];
+ 	Logger.debug('Record Id', accs[0].Id);
+  	Logger.debug('Reference', accs[0]);
+   	Logger.debug('List', accs);
+  	Logger.saveLog();
 
 ## Salesforce DX Project: Next Steps
 

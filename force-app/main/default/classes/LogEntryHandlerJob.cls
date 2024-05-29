@@ -86,13 +86,15 @@ public class LogEntryHandlerJob {
             }
             
             String sobjectName = String.isNotBlank(entry.Record_Id__c) ? ((Id)entry.Record_Id__c).getSObjectType().getDescribe().getName() : '';
+            String origin = getOrigin(entry.Origin__c);
             enrtiesNeedToCreate.add(new Log_Entry__c(Record_Id__c = entry.Record_Id__c, 
                                                      Log_Detail__c = logDetail.Id,
                                                      Object_Api_Name__c = sobjectName,
                                                      Entry__c = entry.Entry__c,
                                                      Level_Text__c = entry.Level__c,
                                                      Message__c = entry.Message__c,
-                                                     Origin__c = getOrigin(entry.Origin__c),
+                                                     Origin__c = origin,
+                                                     Class_Name__c = getClassName(origin),
                                                      Message_Stacktrace__c = getStacktrace(entry.Origin__c)));
             if(String.isNotBlank(entry.Record_Id__c)) {
                 recordIds.add(entry.Record_Id__c);
@@ -137,6 +139,17 @@ public class LogEntryHandlerJob {
             return originList.get(1);
         }
         return '';
+    }
+    
+    public static String getClassName(String origin) {
+        if(String.isBlank(origin)) {
+            return origin;
+        }
+        try {
+            return origin.substringAfter('.').substringBefore('.');
+        }catch(Exception ex) {
+            return 'Unknown';
+        }
     }
     
     private static String getStacktrace(String origin) {

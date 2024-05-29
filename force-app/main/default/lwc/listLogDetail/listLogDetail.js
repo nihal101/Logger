@@ -7,7 +7,7 @@ import NUMBER_OF_RECORDS_AT_ONCE from '@salesforce/label/c.NUMBER_OF_RECORDS_AT_
 
 const columns = [
     {
-        label: "Log Number", fieldName: "name",
+        label: "Log Number", fieldName: "logRecordId", type: 'url', typeAttributes: { label: { fieldName: 'name' }, target: '_blank' }
     },
     {
         label: "User Name", fieldName: "userId", type: 'url', typeAttributes: { label: { fieldName: 'userName' }, target: '_blank' }
@@ -61,7 +61,6 @@ export default class ListLogDetail extends NavigationMixin(LightningElement) {
     handleRowAction(event) {
         const actionName = event.detail.action.name;
         const row = event.detail.row;
-        console.log(actionName);
         switch (actionName) {
             case 'Preview':
                 this.previewFile(row);
@@ -88,7 +87,8 @@ export default class ListLogDetail extends NavigationMixin(LightningElement) {
         getLogDetails({recordId: this.recordId, offSet: this.numberOfRecord*this.count, numberOfRecord: this.numberOfRecord}).then(result => {
             if(result.isSuccess) {
                 result.records.forEach(record => {
-                    record.userId = record.userId;
+                    record.logRecordId = "/" + record.recordId;
+                    record.userId = "/" + record.userId;
                     record.isPreviewDisabled = record.contentDocumentId ? false : true;
                 });
                 this.currentFetchedRecord = result.records;

@@ -2,6 +2,30 @@
 
 	LogLinker is designed to work only with Apex and Salesforce users.
 
+ # Method
+
+ ## debug(String message)
+
+ 	Text message want to log.
+  	Eg: Logger.debug('Debug 1');
+
+## debug(String message, Id recorded)
+
+ 	Log entry against the sobject record by passing sobject record id(Including standard & custom sObject).
+  	Eg: Logger.debug('Debug 1', {recordId});
+
+## debug(String message, sObject sObj)
+
+ 	Log entry against the sobject record by passing sobject record reference(Including standard & custom sObject).
+  	Eg: List<Account> accs = [SELECT Id FROM Account];
+  	    Logger.debug('Debug 1', accs[0]);
+
+## debug(String message, List<sObject> listOfSobj)
+
+	Log entry against the sobject record by passing collection(Including standard & custom sObject). An entry will be created for each record in the collection.
+ 	Eg: List<Account> accs = [SELECT Id FROM Account];
+   	    Logger.debug('Debug 1', accs);
+
 # Example
 
 ## Example 1
@@ -84,7 +108,7 @@ Below an example of an apex class.
 
 ## Salesforce DX Project: Next Steps
 
-	Will enable the log entry functionality from the flow and process builder.  
+	Enable functionality to log the entry from the flow, process builder, and exception class.  
 
 ## Configure Logger in Salesforce Org
 

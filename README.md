@@ -24,7 +24,33 @@ Create an entry & related to the record using either record ID or reference or l
 
 Below an example of an apex class.
 
-	
+	public class ValidateNewAcccount {
+	    public static Boolean isValidAccount(Account newAccount) {
+	        Boolean isSuccess = true;
+	        try {
+	            if(newAccount.Name.contains('Test')) {
+	                Logger.error('Account name can\'t contains \'Test\' keyword', newAccount);
+	                isSuccess = false;
+	            }
+	            if(newAccount.BillingAddress == null) {
+	                Logger.error('Account billing address can\'t be empty', newAccount);
+	                isSuccess = false;
+	            }
+	            return isSuccess;
+	        }catch(Exception ex) {
+	            Logger.error(ex.getMessage(), newAccount);
+	            isSuccess = false;
+	        }finally {
+	            Logger.saveLog();
+	        }
+	        return isSuccess;
+	    }
+	}
+
+ ## Example 4
+
+ Set parent log. This will be helpful when we're working with asynchronous apex. By using this we can see all related logs on one page.
+ 
 
 ## Salesforce DX Project: Next Steps
 

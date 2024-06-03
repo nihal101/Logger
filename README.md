@@ -50,6 +50,36 @@ Below an example of an apex class.
  ## Example 4
 
  Set parent log. This will be helpful when we're working with asynchronous apex. By using this we can see all related logs on one page.
+
+ 	public class CaseRetentionBatch implements Database.Batchable<sObject>, Database.Stateful {
+    
+    String parentTransactionId = '';
+    
+    public Database.QueryLocator start(Database.BatchableContext bc) {
+        Logger.debug('Running SOQL to get all one year case records');
+        parentTransactionId = Logger.getTransactionId();
+        Logger.saveLog();
+        return Database.getQueryLocator([SELECT Id FROM Case WHERE CreatedDate <= NEXT_N_YEARS:1]);
+    }
+    
+    public void execute(Database.BatchableContext bc, List<Case> cases) {
+        try {
+            delete cases;
+            Logger.debug('Deleted the case record : ' + cases.size());
+            Logger.setParentTransactionId(parentTransactionId);
+            Logger.saveLog();
+        }catch(Exception ex) {
+            Logger.error(ex.getMessage());
+            Logger.saveLog();
+        }
+    }
+    
+    public void finish(Database.BatchableContext bc) {
+        Logger.debug('Job has been finished');
+        Logger.setParentTransactionId(parentTransactionId);
+        Logger.saveLog();
+    }
+}
  
 
 ## Salesforce DX Project: Next Steps

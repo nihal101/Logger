@@ -4,6 +4,8 @@
 
  # Method
 
+ 	We primarily use two types of logging methods: debug and error. The debug method logs entries when specific milestones are reached during execution. The error method is used to log entries when an unexpected event occurs.
+
  ## debug(String message)
 
  	Text message want to log.
@@ -25,6 +27,28 @@
 	Log entry against the sobject record by passing collection(Including standard & custom sObject). An entry will be created for each record in the collection.
  	Eg: List<Account> accs = [SELECT Id FROM Account];
    	    Logger.debug('Debug 1', accs);
+
+ ## error(String message)
+
+ 	Text message want to log.
+  	Eg: Logger.debug('Debug 1');
+
+## error(String message, Id recorded)
+
+ 	Log entry against the sobject record by passing sobject record id(Including standard & custom sObject).
+  	Eg: Logger.error('Error 1', {recordId});
+
+## error(String message, sObject sObj)
+
+ 	Log entry against the sobject record by passing sobject record reference(Including standard & custom sObject).
+  	Eg: List<Account> accs = [SELECT Id FROM Account];
+  	    Logger.error('Error 1', accs[0]);
+
+## error(String message, List<sObject> listOfSobj)
+
+	Log entry against the sobject record by passing collection(Including standard & custom sObject). An entry will be created for each record in the collection.
+ 	Eg: List<Account> accs = [SELECT Id FROM Account];
+   	    Logger.error('Error 1', accs);
 
 # Example
 

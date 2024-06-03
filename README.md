@@ -132,7 +132,7 @@ Below an example of an apex class.
 
 ## Salesforce DX Project: Next Steps
 
-	Enable functionality to log the entry from the flow, process builder, and exception class.  
+	Working on functionality to log the entry from the flow, process builder, and exception class.  
 
 ## Configure Logger in Salesforce Org
 

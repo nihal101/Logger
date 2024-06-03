@@ -138,6 +138,13 @@ Below an example of an apex class.
 
  ![image](https://github.com/nihal101/Logger/assets/46245110/d4aab057-df68-40de-8c11-48706a360318)
 
+## 2 Live Streaming:
+
+	To see the log entry live, use the following page. Go to the "Home" page -> "Live Stream" tab -> click on the button "Start"
+
+ ![image](https://github.com/nihal101/Logger/assets/46245110/99567e6c-c2fa-413a-925f-1c90e4cea1a2)
+
+ ![image](https://github.com/nihal101/Logger/assets/46245110/05529d19-7f97-48b4-9a82-c23e529cdb07)
 
 
 ## Salesforce DX Project: Next Steps

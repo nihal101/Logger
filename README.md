@@ -11,7 +11,7 @@
  	Text message want to log.
   	Eg: Logger.debug('Debug 1');
 
-## debug(String message, Id recorded)
+## debug(String message, Id recordId)
 
  	Log entry against the sobject record by passing sobject record id(Including standard & custom sObject).
   	Eg: Logger.debug('Debug 1', {recordId});
@@ -22,7 +22,7 @@
   	Eg: List<Account> accs = [SELECT Id FROM Account];
   	    Logger.debug('Debug 1', accs[0]);
 
-## debug(String message, List<sObject> listOfSobj)
+## debug(message, listOfSobj)
 
 	Log entry against the sobject record by passing collection(Including standard & custom sObject). An entry will be created for each record in the collection.
  	Eg: List<Account> accs = [SELECT Id FROM Account];
@@ -33,18 +33,18 @@
  	Text message want to log.
   	Eg: Logger.debug('Debug 1');
 
-## error(String message, Id recorded)
+## error(String message, Id recordId)
 
  	Log entry against the sobject record by passing sobject record id(Including standard & custom sObject).
   	Eg: Logger.error('Error 1', {recordId});
 
-## error(String message, sObject sObj)
+## error(String message, sObj)
 
  	Log entry against the sobject record by passing sobject record reference(Including standard & custom sObject).
   	Eg: List<Account> accs = [SELECT Id FROM Account];
   	    Logger.error('Error 1', accs[0]);
 
-## error(String message, List<sObject> listOfSobj)
+## error(message, listOfSobj)
 
 	Log entry against the sobject record by passing collection(Including standard & custom sObject). An entry will be created for each record in the collection.
  	Eg: List<Account> accs = [SELECT Id FROM Account];

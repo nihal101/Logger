@@ -128,14 +128,20 @@ Below an example of an apex class.
         Logger.saveLog();
     }
 }
- 
+
+# Configure Logger in Salesforce Org
+
+## 1 Generate log files:
+
+	 To generate the debug log files, Go to the log record detail page & click on the button "Generate Log File(s)" and after this under "Files" the debug file will be saved.
+ ![image](https://github.com/nihal101/Logger/assets/46245110/5d003e26-29b8-4fcc-90eb-4b5a22fbfebc)
+
+ ![image](https://github.com/nihal101/Logger/assets/46245110/d4aab057-df68-40de-8c11-48706a360318)
+
+
 
 ## Salesforce DX Project: Next Steps
 
 	Working on functionality to log the entry from the flow, process builder, and exception class.  
-
-## Configure Logger in Salesforce Org
-
-## Documentation
 
 

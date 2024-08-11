@@ -1,6 +1,6 @@
 # LogLinker
 
-**LogLinker** is a tool specifically designed to work with Apex and Salesforce users, providing robust logging capabilities.
+**LogLinker** is a tool specifically designed to work with Apex, Flow, Processbuilder and Salesforce users, providing robust logging capabilities.
 
 ## Method: Apex
 
@@ -240,7 +240,7 @@ LogLinker provides the following filter options to refine log entries:
 
 ## Salesforce DX Project: Next Steps
 
-- Working on functionality to log entries from Flow, Process Builder, and Exception classes.
+- Batch to delete the log entry record.
 
 ---
 

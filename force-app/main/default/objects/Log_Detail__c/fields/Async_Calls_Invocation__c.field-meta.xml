@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Async_Calls_Invocation__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( (  Async_Calls__c /  Async_Calls_Limit__c )*100 &lt;= 80 , &quot;✅&quot; ,
+IF(( Async_Calls__c / Async_Calls_Limit__c )*100 &gt; 80 &amp;&amp; ( Async_Calls__c / Async_Calls_Limit__c )*100 &lt; 90, &quot;⚠️&quot; , &quot;⛔&quot; ) ) + &quot; &quot; +
+
+TEXT( ROUND(( Async_Calls__c / Async_Calls_Limit__c )*100, 2 )) + &quot;% (&quot; + TEXT( Async_Calls__c ) + &quot; / &quot; + TEXT( Async_Calls_Limit__c ) + &quot;)&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>✅ when 80% or less of the limit is used, ⚠️ when 80.1-89.9% is used, or ⛔ when 90% or more is used.</inlineHelpText>
+    <label>Async Calls</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

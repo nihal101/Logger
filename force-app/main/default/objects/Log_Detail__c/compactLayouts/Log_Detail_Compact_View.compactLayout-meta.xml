@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Log_Detail_Compact_View</fullName>
+    <fields>Name</fields>
+    <fields>Parent_Log__c</fields>
+    <fields>User__c</fields>
+    <fields>Total_Entries__c</fields>
+    <label>Log Detail Compact View</label>
+</CompactLayout>

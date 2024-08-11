@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Level__c</fullName>
+    <externalId>false</externalId>
+    <formula>IMAGE(  
+CASE( Level_Text__c, 
+      &apos;DEBUG&apos;, &apos;/resource/Success_Icon&apos;, 
+      &apos;ERROR&apos;, &apos;/resource/Error_Icon&apos;,
+      &apos;EXCEPTION&apos;, &apos;/resource/Exception_Icon&apos;,
+      &apos;Nothing&apos;), 
+Level_Text__c , 22, 22) + &apos; &apos; + Level_Text__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Level #</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

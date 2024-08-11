@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_DEBUG_Entries__c</fullName>
+    <externalId>false</externalId>
+    <label>Total DEBUG Entries</label>
+    <summaryFilterItems>
+        <field>Log_Entry__c.Level_Text__c</field>
+        <operation>equals</operation>
+        <value>DEBUG</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Log_Entry__c.Log_Detail__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

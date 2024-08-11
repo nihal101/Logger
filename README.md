@@ -227,6 +227,15 @@ To view log entries live:
 
 ![image](https://github.com/nihal101/Logger/assets/46245110/05529d19-7f97-48b4-9a82-c23e529cdb07)
 
+#### 1. Filter Options
+
+LogLinker provides the following filter options to refine log entries:
+
+1. **Logged By**: Select the user who executed the class or flow.
+2. **Origin Location**: Enter the class name or method from entry has been created.
+3. **Logging Level**: Choose the level of logs to display - 'All', 'DEBUG', 'ERROR', or 'EXCEPTION'.
+4. **Message Contains**: Search for specific keywords within the log messages.
+
 ---
 
 ## Salesforce DX Project: Next Steps

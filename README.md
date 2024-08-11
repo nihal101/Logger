@@ -238,6 +238,14 @@ LogLinker provides the following filter options to refine log entries:
 
 ---
 
+### 3. See Transaction Metrics
+
+On the log record detail page, navigate to the "Governor Limits" tab to view all utilized Apex limits.
+
+![image](https://github.com/user-attachments/assets/6d3c124a-d884-45b1-9db0-adaaf3b2fa70)
+
+---
+
 ## Salesforce DX Project: Next Steps
 
 - Batch to delete the log entry record.

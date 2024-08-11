@@ -2,7 +2,7 @@
 
 	LogLinker is designed to work only with Apex and Salesforce users.
 
- # Method
+ # Method - Apex
 
  	We primarily use two types of logging methods: debug and error. The debug method logs entries when specific milestones are reached during execution. The error method is used to log entries when an unexpected event occurs.
 
@@ -28,6 +28,18 @@
  	Eg: List<Account> accs = [SELECT Id FROM Account];
    	    Logger.debug('Debug 1', accs);
 
+ ## debug(Exception ex)
+        Using this method, we can pass instance of exception & it'll create a debug log entry record and also store all info related to the exception.
+ 	try {
+  	     Integer num = 26/0;
+  	}catch(Exception ex) {
+   	     Logger.debug(ex);
+	     Logger.saveLog();
+   	}
+    Note: There're two more method where we can link record to the Log Entry created via from Exception.
+    1. Logger.debug(ex, recordId);
+    2. Logger.debug(ex, sObjectReference);
+
  ## error(String message)
 
  	Text message want to log.
@@ -49,6 +61,18 @@
 	Log entry against the sobject record by passing collection(Including standard & custom sObject). An entry will be created for each record in the collection.
  	Eg: List<Account> accs = [SELECT Id FROM Account];
    	    Logger.error('Error 1', accs);
+	
+ ## error(Exception ex)
+        It's same as debug, it'll only create the error log entry record.
+ 	try {
+  	     Integer num = 26/0;
+  	}catch(Exception ex) {
+   	     Logger.error(ex);
+	     Logger.saveLog();
+   	}
+    Note: There're two more method where we can link record to the Log Entry created via from Exception.
+    1. Logger.error(ex, recordId);
+    2. Logger.error(ex, sObjectReference);
 
 # Example
 

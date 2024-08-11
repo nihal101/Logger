@@ -55,6 +55,7 @@ public class LogEntryHandlerJob {
             }
             
             if(entry.Type__c == 'LogDetail') {
+                logDetail.Component_Type__c = entry.Component_Type__c;
                 logDetail.Callouts_Limit__c = entry.Callouts_Limit__c;
                 logDetail.CPU_Time_Limit__c = entry.CPU_Time_Limit__c;
                 logDetail.DML_Statements_Limit__c = entry.DML_Statements_Limit__c;
@@ -95,7 +96,8 @@ public class LogEntryHandlerJob {
                                                      Message__c = entry.Message__c,
                                                      Origin__c = origin,
                                                      Class_Name__c = getClassName(origin),
-                                                     Message_Stacktrace__c = getStacktrace(entry.Origin__c)));
+                                                     Message_Stacktrace__c = getStacktrace(entry.Origin__c),
+                                                     Component_Type__c = entry.Component_Type__c));
             if(String.isNotBlank(entry.Record_Id__c)) {
                 recordIds.add(entry.Record_Id__c);
             }
@@ -146,7 +148,7 @@ public class LogEntryHandlerJob {
             return origin;
         }
         try {
-            return origin.substringAfter('.').substringBefore('.');
+            return origin.contains('.') ? origin.substringAfter('.').substringBefore('.') : origin;
         }catch(Exception ex) {
             return 'Unknown';
         }

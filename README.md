@@ -1,178 +1,238 @@
-# Overview
+# LogLinker
 
-	LogLinker is designed to work only with Apex and Salesforce users.
+**LogLinker** is a tool specifically designed to work with Apex and Salesforce users, providing robust logging capabilities.
 
- # Method - Apex
+## Method: Apex
 
- 	We primarily use two types of logging methods: debug and error. The debug method logs entries when specific milestones are reached during execution. The error method is used to log entries when an unexpected event occurs.
+LogLinker supports two primary logging methods: `debug` and `error`.
 
- ## debug(String message)
+### 1. `debug(String message)`
 
- 	Text message want to log.
-  	Eg: Logger.debug('Debug 1');
+Logs a text message at a specific milestone during execution.
 
-## debug(String message, Id recordId)
+- **Example**: 
+    ```apex
+    Logger.debug('Debug 1');
+    ```
 
- 	Log entry against the sobject record by passing sobject record id(Including standard & custom sObject).
-  	Eg: Logger.debug('Debug 1', {recordId});
+### 2. `debug(String message, Id recordId)`
 
-## debug(String message, sObject sObj)
+Logs a message associated with an sObject record by passing the sObject record ID (supports both standard and custom sObjects).
 
- 	Log entry against the sobject record by passing sobject record reference(Including standard & custom sObject).
-  	Eg: List<Account> accs = [SELECT Id FROM Account];
-  	    Logger.debug('Debug 1', accs[0]);
+- **Example**: 
+    ```apex
+    Logger.debug('Debug 1', recordId);
+    ```
 
-## debug(message, listOfSobj)
+### 3. `debug(String message, sObject sObj)`
 
-	Log entry against the sobject record by passing collection(Including standard & custom sObject). An entry will be created for each record in the collection.
- 	Eg: List<Account> accs = [SELECT Id FROM Account];
-   	    Logger.debug('Debug 1', accs);
+Logs a message associated with an sObject record by passing the sObject reference (supports both standard and custom sObjects).
 
- ## debug(Exception ex)
-        Using this method, we can pass instance of exception & it'll create a debug log entry record and also store all info related to the exception.
- 	try {
-  	     Integer num = 26/0;
-  	}catch(Exception ex) {
-   	     Logger.debug(ex);
-	     Logger.saveLog();
-   	}
-    Note: There're two more method where we can link record to the Log Entry created via from Exception.
-    1. Logger.debug(ex, recordId);
-    2. Logger.debug(ex, sObjectReference);
+- **Example**:
+    ```apex
+    List<Account> accs = [SELECT Id FROM Account];
+    Logger.debug('Debug 1', accs[0]);
+    ```
 
- ## error(String message)
+### 4. `debug(String message, List<sObject> listOfSobj)`
 
- 	Text message want to log.
-  	Eg: Logger.debug('Debug 1');
+Logs a message associated with each record in a collection (supports both standard and custom sObjects).
 
-## error(String message, Id recordId)
+- **Example**:
+    ```apex
+    List<Account> accs = [SELECT Id FROM Account];
+    Logger.debug('Debug 1', accs);
+    ```
 
- 	Log entry against the sobject record by passing sobject record id(Including standard & custom sObject).
-  	Eg: Logger.error('Error 1', {recordId});
+### 5. `debug(Exception ex)`
 
-## error(String message, sObj)
+Logs an exception by creating a debug log entry with all related information.
 
- 	Log entry against the sobject record by passing sobject record reference(Including standard & custom sObject).
-  	Eg: List<Account> accs = [SELECT Id FROM Account];
-  	    Logger.error('Error 1', accs[0]);
+- **Example**:
+    ```apex
+    try {
+        Integer num = 26 / 0;
+    } catch (Exception ex) {
+        Logger.debug(ex);
+        Logger.saveLog();
+    }
+    ```
+  
+**Note:** You can link a record to the log entry created from the exception using:
+- `Logger.debug(ex, recordId);`
+- `Logger.debug(ex, sObjectReference);`
 
-## error(message, listOfSobj)
+### 6. `error(String message)`
 
-	Log entry against the sobject record by passing collection(Including standard & custom sObject). An entry will be created for each record in the collection.
- 	Eg: List<Account> accs = [SELECT Id FROM Account];
-   	    Logger.error('Error 1', accs);
-	
- ## error(Exception ex)
-        It's same as debug, it'll only create the error log entry record.
- 	try {
-  	     Integer num = 26/0;
-  	}catch(Exception ex) {
-   	     Logger.error(ex);
-	     Logger.saveLog();
-   	}
-    Note: There're two more method where we can link record to the Log Entry created via from Exception.
-    1. Logger.error(ex, recordId);
-    2. Logger.error(ex, sObjectReference);
+Logs an error message.
 
-# Example
+- **Example**:
+    ```apex
+    Logger.error('Error 1');
+    ```
 
-## Example 1
-Create a simple debug/error entry
+### 7. `error(String message, Id recordId)`
 
- 	Logger.debug('Debug 1');
-   	Logger.error('Error 1');
-  	Logger.saveLog();
+Logs an error message associated with an sObject record by passing the sObject record ID (supports both standard and custom sObjects).
 
-## Example 2
-Create an entry & related to the record using either record ID or reference or list collection.
+- **Example**:
+    ```apex
+    Logger.error('Error 1', recordId);
+    ```
 
-	List<Account> accs = [SELECT Id FROM Account];
- 	Logger.debug('Record Id', accs[0].Id);
-  	Logger.debug('Reference', accs[0]);
-   	Logger.debug('List', accs);
-  	Logger.saveLog();
+### 8. `error(String message, sObject sObj)`
 
-## Example 3
+Logs an error message associated with an sObject record by passing the sObject reference (supports both standard and custom sObjects).
 
-Below an example of an apex class.
+- **Example**:
+    ```apex
+    List<Account> accs = [SELECT Id FROM Account];
+    Logger.error('Error 1', accs[0]);
+    ```
 
-	public class ValidateNewAcccount {
-	    public static Boolean isValidAccount(Account newAccount) {
-	        Boolean isSuccess = true;
-	        try {
-	            if(newAccount.Name.contains('Test')) {
-	                Logger.error('Account name can\'t contains \'Test\' keyword', newAccount);
-	                isSuccess = false;
-	            }
-	            if(newAccount.BillingAddress == null) {
-	                Logger.error('Account billing address can\'t be empty', newAccount);
-	                isSuccess = false;
-	            }
-	            return isSuccess;
-	        }catch(Exception ex) {
-	            Logger.error(ex.getMessage(), newAccount);
-	            isSuccess = false;
-	        }finally {
-	            Logger.saveLog();
-	        }
-	        return isSuccess;
-	    }
-	}
+### 9. `error(String message, List<sObject> listOfSobj)`
 
- ## Example 4
+Logs an error message associated with each record in a collection (supports both standard and custom sObjects).
 
- Set parent log. This will be helpful when we're working with asynchronous apex. By using this we can see all related logs on one page.
+- **Example**:
+    ```apex
+    List<Account> accs = [SELECT Id FROM Account];
+    Logger.error('Error 1', accs);
+    ```
 
- 	public class CaseRetentionBatch implements Database.Batchable<sObject>, Database.Stateful {
-    
+### 10. `error(Exception ex)`
+
+Logs an exception by creating an error log entry.
+
+- **Example**:
+    ```apex
+    try {
+        Integer num = 26 / 0;
+    } catch (Exception ex) {
+        Logger.error(ex);
+        Logger.saveLog();
+    }
+    ```
+
+**Note:** You can link a record to the log entry created from the exception using:
+- `Logger.error(ex, recordId);`
+- `Logger.error(ex, sObjectReference);`
+
+---
+
+## Examples
+
+### Example 1: Create a Simple Debug/Error Entry
+
+```apex
+Logger.debug('Debug 1');
+Logger.error('Error 1');
+Logger.saveLog();
+```
+
+### Example 2: Create an Entry Related to a Record
+
+```apex
+List<Account> accs = [SELECT Id FROM Account];
+Logger.debug('Record Id', accs[0].Id);
+Logger.debug('Reference', accs[0]);
+Logger.debug('List', accs);
+Logger.saveLog();
+```
+
+### Example 3: Apex Class Example
+
+```apex
+public class ValidateNewAccount {
+    public static Boolean isValidAccount(Account newAccount) {
+        Boolean isSuccess = true;
+        try {
+            if (newAccount.Name.contains('Test')) {
+                Logger.error('Account name can\'t contain \'Test\' keyword', newAccount);
+                isSuccess = false;
+            }
+            if (newAccount.BillingAddress == null) {
+                Logger.error('Account billing address can\'t be empty', newAccount);
+                isSuccess = false;
+            }
+            return isSuccess;
+        } catch (Exception ex) {
+            Logger.error(ex.getMessage(), newAccount);
+            isSuccess = false;
+        } finally {
+            Logger.saveLog();
+        }
+        return isSuccess;
+    }
+}
+```
+
+### Example 4: Set Parent Log (Asynchronous Apex)
+
+```apex
+public class CaseRetentionBatch implements Database.Batchable<sObject>, Database.Stateful {
+
     String parentTransactionId = '';
-    
+
     public Database.QueryLocator start(Database.BatchableContext bc) {
-        Logger.debug('Running SOQL to get all one year case records');
+        Logger.debug('Running SOQL to get all one-year case records');
         parentTransactionId = Logger.getTransactionId();
         Logger.saveLog();
         return Database.getQueryLocator([SELECT Id FROM Case WHERE CreatedDate <= NEXT_N_YEARS:1]);
     }
-    
+
     public void execute(Database.BatchableContext bc, List<Case> cases) {
         try {
             delete cases;
-            Logger.debug('Deleted the case record : ' + cases.size());
+            Logger.debug('Deleted the case record: ' + cases.size());
             Logger.setParentTransactionId(parentTransactionId);
             Logger.saveLog();
-        }catch(Exception ex) {
+        } catch (Exception ex) {
             Logger.error(ex.getMessage());
             Logger.saveLog();
         }
     }
-    
+
     public void finish(Database.BatchableContext bc) {
         Logger.debug('Job has been finished');
         Logger.setParentTransactionId(parentTransactionId);
         Logger.saveLog();
     }
 }
+```
 
-# Configure Logger in Salesforce Org
+---
 
-## 1 Generate log files:
+## Configuration in Salesforce Org
 
-	 To generate the debug log files, Go to the log record detail page & click on the button "Generate Log File(s)" and after this under "Files" the debug file will be saved.
- ![image](https://github.com/nihal101/Logger/assets/46245110/5d003e26-29b8-4fcc-90eb-4b5a22fbfebc)
+### 1. Generate Log Files
 
- ![image](https://github.com/nihal101/Logger/assets/46245110/d4aab057-df68-40de-8c11-48706a360318)
+To generate debug log files:
+1. Go to the log record detail page.
+2. Click on the button **"Generate Log File(s)"**.
+3. The debug file will be saved under **"Files"**.
 
-## 2 Live Streaming:
+![image](https://github.com/nihal101/Logger/assets/46245110/5d003e26-29b8-4fcc-90eb-4b5a22fbfebc)
 
-	To see the log entry live, use the following page. Go to the "Home" page -> "Live Stream" tab -> click on the button "Start"
+![image](https://github.com/nihal101/Logger/assets/46245110/d4aab057-df68-40de-8c11-48706a360318)
 
- ![image](https://github.com/nihal101/Logger/assets/46245110/99567e6c-c2fa-413a-925f-1c90e4cea1a2)
+### 2. Live Streaming
 
- ![image](https://github.com/nihal101/Logger/assets/46245110/05529d19-7f97-48b4-9a82-c23e529cdb07)
+To view log entries live:
+1. Go to the **"Home"** page.
+2. Navigate to the **"Live Stream"** tab.
+3. Click on the button **"Start"**.
 
+![image](https://github.com/nihal101/Logger/assets/46245110/99567e6c-c2fa-413a-925f-1c90e4cea1a2)
+
+![image](https://github.com/nihal101/Logger/assets/46245110/05529d19-7f97-48b4-9a82-c23e529cdb07)
+
+---
 
 ## Salesforce DX Project: Next Steps
 
-	Working on functionality to log the entry from the flow, process builder, and exception class.  
+- Working on functionality to log entries from Flow, Process Builder, and Exception classes.
 
+---
 
+This format provides a cleaner and more structured way to document your LogLinker tool, making it easier for users to understand and implement.

@@ -30,12 +30,12 @@ public class SobjectHelper {
         return idToSobjectDetail;
     }
     
-    public static Boolean isFileSavingEnabled() {
+    /*public static Boolean isFileSavingEnabled() {
         List<Logger_Configuration__mdt> configurationDetails = [SELECT Id,
                                                                 Don_t_Save_Log_File__c
                                                                 FROM Logger_Configuration__mdt LIMIT 1];
         return !(configurationDetails.isEmpty() ? false : configurationDetails[0].Don_t_Save_Log_File__c);
-    }
+    }*/
 
     /* This method will be called from ToolingApiController & LogEntryHandlerJob to get the All ApexLog Detail from transactionId */
     public static List<ApexLog> getAllApexLog(String transactionId) {

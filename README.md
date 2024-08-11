@@ -118,6 +118,22 @@ Logs an exception by creating an error log entry.
 - `Logger.error(ex, recordId);`
 - `Logger.error(ex, sObjectReference);`
 
+Here's how to incorporate the `saveLog()` method into the documentation:
+
+---
+
+### 11. `saveLog()`
+
+The `saveLog()` method finalizes and creates the log entries initiated by the logging methods mentioned above. It's crucial to ensure that `Logger.saveLog()` is executed successfully; otherwise, no log entry records will be created, even if the logging methods have been called.
+
+- **Example**:
+    ```apex
+    Logger.debug('This is save');
+    Logger.saveLog();
+    ```
+
+Make sure that `Logger.saveLog()` is always called after your logging operations to ensure that the log entries are properly recorded.
+
 ---
 
 ## Examples

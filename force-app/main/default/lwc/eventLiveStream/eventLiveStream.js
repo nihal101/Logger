@@ -67,6 +67,7 @@ export default class EventLiveStream extends LightningElement {
             { label: 'All', value: '' },
             { label: 'DEBUG', value: 'DEBUG' },
             { label: 'ERROR', value: 'ERROR' },
+            { label: 'EXCEPTION', value: 'EXCEPTION'}
         ];
     }
 

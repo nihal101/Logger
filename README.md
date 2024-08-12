@@ -14,8 +14,7 @@
     text-align: center;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  ">
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;">
     Install Unmanaged Package
   </div>
 </a>

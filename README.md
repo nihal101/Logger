@@ -44,25 +44,7 @@ Logs a message associated with each record in a collection (supports both standa
     Logger.debug('Debug 1', accs);
     ```
 
-### 5. `debug(Exception ex)`
-
-Logs an exception by creating a debug log entry with all related information.
-
-- **Example**:
-    ```apex
-    try {
-        Integer num = 26 / 0;
-    } catch (Exception ex) {
-        Logger.debug(ex);
-        Logger.saveLog();
-    }
-    ```
-  
-**Note:** You can link a record to the log entry created from the exception using:
-- `Logger.debug(ex, recordId);`
-- `Logger.debug(ex, sObjectReference);`
-
-### 6. `error(String message)`
+### 5. `error(String message)`
 
 Logs an error message.
 
@@ -71,7 +53,7 @@ Logs an error message.
     Logger.error('Error 1');
     ```
 
-### 7. `error(String message, Id recordId)`
+### 6. `error(String message, Id recordId)`
 
 Logs an error message associated with an sObject record by passing the sObject record ID (supports both standard and custom sObjects).
 
@@ -80,7 +62,7 @@ Logs an error message associated with an sObject record by passing the sObject r
     Logger.error('Error 1', recordId);
     ```
 
-### 8. `error(String message, sObject sObj)`
+### 7. `error(String message, sObject sObj)`
 
 Logs an error message associated with an sObject record by passing the sObject reference (supports both standard and custom sObjects).
 
@@ -90,7 +72,7 @@ Logs an error message associated with an sObject record by passing the sObject r
     Logger.error('Error 1', accs[0]);
     ```
 
-### 9. `error(String message, List<sObject> listOfSobj)`
+### 8. `error(String message, List<sObject> listOfSobj)`
 
 Logs an error message associated with each record in a collection (supports both standard and custom sObjects).
 
@@ -100,7 +82,7 @@ Logs an error message associated with each record in a collection (supports both
     Logger.error('Error 1', accs);
     ```
 
-### 10. `error(Exception ex)`
+### 9. `error(Exception ex)`
 
 Logs an exception by creating an error log entry.
 
@@ -122,7 +104,7 @@ Here's how to incorporate the `saveLog()` method into the documentation:
 
 ---
 
-### 11. `saveLog()`
+### 10. `saveLog()`
 
 The `saveLog()` method finalizes and creates the log entries initiated by the logging methods mentioned above. It's crucial to ensure that `Logger.saveLog()` is executed successfully; otherwise, no log entry records will be created, even if the logging methods have been called.
 

@@ -2,6 +2,24 @@
 
 **LogLinker** is a tool specifically designed to work with Apex, Flow, Processbuilder and Salesforce users, providing robust logging capabilities.
 
+<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04tJ4000000D1ys" target="_blank" style="text-decoration: none;">
+  <div style="
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;">
+    Install Unmanaged Package
+  </div>
+</a>
+
+
 ## Method: Apex
 
 LogLinker supports two primary logging methods: `debug` and `error`.

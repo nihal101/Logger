@@ -262,6 +262,16 @@ On the log record detail page, navigate to the "Governor Limits" tab to view all
 
 ---
 
+### 4. See Log Details on Record Detail Page     
+
+To see the all related logs for specific record, we need to add a component to the record detail page. Also we can download the log file as well if it's generated.
+
+![image](https://github.com/user-attachments/assets/a7910c4f-f005-4107-b520-52d20fedbcf7)
+
+![image](https://github.com/user-attachments/assets/68b80690-4313-45b0-a2e0-7f2471000e62)
+
+---
+
 ## Salesforce DX Project: Next Steps
 
 - Batch to delete the log entry record.
